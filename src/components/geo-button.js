@@ -15,9 +15,19 @@ export default class GeoButton extends React.Component{
     componentDidMount = () =>{
         
         if(this.domNode){
-            this.domNode.el.addEventListener('click', (ev) =>{
-                console.log('didMount', this);
+            this.domNode.el.addEventListener('click', ev =>{
+                //console.log('didMount', this);
                 this.props.onClick({shape: this.props.label, color:this.props.color});
+            });
+            this.domNode.el.addEventListener('mouseenter', ev =>{
+                let state = {...this.state, scale:{x:1.2, y:1.2, z:1.2}};
+                //console.log("STATE", state);
+                this.setState(state);
+            });
+            this.domNode.el.addEventListener('mouseleave', ev =>{
+                let state = {...this.state, scale:{x:1, y:1, z:1}};
+                //console.log("STATE", state);
+                this.setState(state);
             })
         }
     }
@@ -70,7 +80,12 @@ export default class GeoButton extends React.Component{
             geometry: geometry,
             material : material,
             text : text,
-            position: props.position
+            position: props.position,
+            scale: {
+                x:1,
+                y:1,
+                z:1
+            }
         }
     }
 
@@ -80,11 +95,8 @@ export default class GeoButton extends React.Component{
                 material = {this.state.material} 
                 position = {this.state.position} 
                 text ={this.state.text} class='clickable'
-                event-set__1="_event: mousedown; scale: 1 1 1"
-                event-set__2="_event: mouseup; scale: 1.2 1.2 1"
-                event-set__3="_event: mouseenter; scale: 1.2 1.2 1"
+                scale={this.state.scale}
                 ref = {c => this.domNode = c}
-                onClick = {() => {console.log('clicked')}}
             >  
             </Entity>
         )
