@@ -1,5 +1,4 @@
 import 'aframe-animation-component';
-import 'aframe-event-set-component';
 import {Entity} from 'aframe-react';
 import React from 'react';
 

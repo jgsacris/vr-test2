@@ -1,6 +1,5 @@
 import {Entity} from 'aframe-react';
 import React from 'react';
-import 'aframe-event-set-component';
 
 export default class GeoButton extends React.Component{
 
